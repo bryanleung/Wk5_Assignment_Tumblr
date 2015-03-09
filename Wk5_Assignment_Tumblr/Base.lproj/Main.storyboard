@@ -62,17 +62,18 @@
                                             <action selector="tabBarDidPress:" destination="ra7-FL-8HW" eventType="touchUpInside" id="NqH-WX-HlC"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gta-8e-Bgx" userLabel="compose">
+                                    <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gta-8e-Bgx" userLabel="compose">
                                         <rect key="frame" x="135" y="0.0" width="50" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
                                         <state key="normal" image="compose_button">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="tabBarDidPress:" destination="ra7-FL-8HW" eventType="touchUpInside" id="tmQ-fG-Mbr"/>
+                                            <outletCollection property="gestureRecognizers" destination="TYX-2y-3lx" appends="YES" id="acI-Rs-1Kv"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uyU-X4-VOu" userLabel="account">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uyU-X4-VOu" userLabel="account">
                                         <rect key="frame" x="203" y="0.0" width="50" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="account_icon">
@@ -84,7 +85,7 @@
                                             <action selector="tabBarDidPress:" destination="ra7-FL-8HW" eventType="touchUpInside" id="5y6-6w-V7r"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mA2-CM-JL4" userLabel="trending">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mA2-CM-JL4" userLabel="trending">
                                         <rect key="frame" x="261" y="0.0" width="50" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="trending_icon">
@@ -116,17 +117,23 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="qe6-Re-tE4"/>
                     <connections>
+                        <outlet property="composeButton" destination="gta-8e-Bgx" id="bNd-9Z-WEl"/>
                         <outlet property="contentView" destination="g5x-l9-UZS" id="2NJ-3f-Oo2"/>
                         <outletCollection property="buttons" destination="13d-By-3LU" collectionClass="NSMutableArray" id="t7F-Bf-0Kf"/>
                         <outletCollection property="buttons" destination="E0f-Xx-BTS" collectionClass="NSMutableArray" id="STd-ZL-Zhi"/>
-                        <outletCollection property="buttons" destination="gta-8e-Bgx" collectionClass="NSMutableArray" id="Pm3-g7-Mu9"/>
                         <outletCollection property="buttons" destination="uyU-X4-VOu" collectionClass="NSMutableArray" id="AhH-OQ-CR8"/>
                         <outletCollection property="buttons" destination="mA2-CM-JL4" collectionClass="NSMutableArray" id="Tbx-Wg-YGj"/>
+                        <segue destination="8Pl-Wq-dKG" kind="modal" identifier="composeSegue" id="7sV-WZ-aTR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ebl-h8-LJa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="TYX-2y-3lx" userLabel="composeTap">
+                    <connections>
+                        <action selector="onTapCompose:" destination="ra7-FL-8HW" id="wWq-TC-m3y"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="224" y="338"/>
+            <point key="canvasLocation" x="318" y="413"/>
         </scene>
         <!--SearchView-->
         <scene sceneID="MVO-pQ-Z7d">
@@ -157,36 +164,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view alpha="0.90000000000000002" contentMode="scaleToFill" id="tXS-4E-VdS" userLabel="background">
+                                <rect key="frame" x="-20" y="0.0" width="360" height="588"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.20392156859999999" green="0.27450980390000002" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ksd-Nj-nB8" userLabel="Chat">
-                                <rect key="frame" x="31" y="135" width="75" height="96"/>
+                                <rect key="frame" x="122" y="236" width="75" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="chat_icon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NLz-66-xXD" userLabel="Link">
-                                <rect key="frame" x="123" y="135" width="75" height="96"/>
+                                <rect key="frame" x="22" y="131" width="75" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="link_icon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="onI-EI-GIu" userLabel="Photo">
-                                <rect key="frame" x="31" y="248" width="75" height="96"/>
+                                <rect key="frame" x="217" y="131" width="75" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="photo_icon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CBW-kg-W5H" userLabel="Quote">
-                                <rect key="frame" x="123" y="248" width="75" height="96"/>
+                                <rect key="frame" x="122" y="131" width="75" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="quote_icon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wrG-sk-Yeo" userLabel="Text">
-                                <rect key="frame" x="220" y="135" width="75" height="96"/>
+                                <rect key="frame" x="217" y="236" width="75" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="text_icon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -195,22 +207,30 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rem-uw-OoE" userLabel="Nevermind">
                                 <rect key="frame" x="0.0" y="515" width="320" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <state key="normal" image="nevermind">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="WzU-Lr-eOV" appends="YES" id="mDD-YP-vrY"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RP5-fk-4YA" userLabel="Video">
-                                <rect key="frame" x="220" y="248" width="75" height="96"/>
+                                <rect key="frame" x="22" y="236" width="75" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="video_icon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.20392156859999999" green="0.27450980390000002" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UOq-nQ-jCQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="WzU-Lr-eOV" userLabel="nevermindTap">
+                    <connections>
+                        <action selector="onTapNevermind:" destination="8Pl-Wq-dKG" id="tpx-S3-qna"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="561" y="1074"/>
         </scene>

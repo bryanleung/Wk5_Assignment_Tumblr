@@ -10,10 +10,10 @@ import UIKit
 
 class ComposeViewController: UIViewController {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,4 +32,7 @@ class ComposeViewController: UIViewController {
     }
     */
 
+    @IBAction func onTapNevermind(sender: UITapGestureRecognizer) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }

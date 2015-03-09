@@ -8,7 +8,9 @@
 
 import UIKit
 
-class TabBarViewController: UIViewController {
+class TabBarViewController: UIViewController, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
+    
+    var isPresenting: Bool = true
 
     @IBOutlet weak var contentView: UIView!
     var homeViewController: HomeViewController!
@@ -18,10 +20,12 @@ class TabBarViewController: UIViewController {
     var accountViewController: AccountViewController!
     var currentViewController: UIViewController!
     
+    @IBOutlet weak var composeButton: UIButton!
     @IBOutlet var buttons: [UIButton]!
     var viewControllersArray: [UIViewController]! = [UIViewController]()
 
     var selectedIndex: Int! = 0
+    var duration: NSTimeInterval = 0.4
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +37,7 @@ class TabBarViewController: UIViewController {
         trendViewController = storyboard.instantiateViewControllerWithIdentifier("trendStory") as TrendViewController
         accountViewController = storyboard.instantiateViewControllerWithIdentifier("accountStory") as AccountViewController
         
-        viewControllersArray = [homeViewController, searchViewController, composeViewController, accountViewController, trendViewController]
+        viewControllersArray = [homeViewController, searchViewController, accountViewController, trendViewController]
         
         
         currentViewController = viewControllersArray[selectedIndex]
@@ -85,9 +89,6 @@ class TabBarViewController: UIViewController {
         
     }
     
-
-    
-    
     func removeChildView(content: UIViewController){
         
         content.willMoveToParentViewController(nil)
@@ -95,4 +96,56 @@ class TabBarViewController: UIViewController {
         content.removeFromParentViewController()
         
     }
+    
+    @IBAction func onTapCompose(sender: UITapGestureRecognizer) {
+        performSegueWithIdentifier("composeSegue", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        var destinationVC = segue.destinationViewController as UIViewController
+        destinationVC.modalPresentationStyle = UIModalPresentationStyle.Custom
+        destinationVC.transitioningDelegate = self
+        
+    }
+    
+    func animationControllerForPresentedController(presented: UIViewController!, presentingController presenting: UIViewController!, sourceController source: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
+        isPresenting = true
+        return self
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
+        isPresenting = false
+        return self
+    }
+    
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+        // The value here should be the duration of the animations scheduled in the animationTransition method
+        return duration
+    }
+    
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        println("animating transition")
+        var containerView = transitionContext.containerView()
+        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
+        var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
+        
+        if (isPresenting) {
+            containerView.addSubview(toViewController.view)
+            toViewController.view.alpha = 0
+            UIView.animateWithDuration(duration, animations: { () -> Void in
+                toViewController.view.alpha = 1
+                }) { (finished: Bool) -> Void in
+                    transitionContext.completeTransition(true)
+            }
+        } else {
+            UIView.animateWithDuration(duration, animations: { () -> Void in
+                fromViewController.view.alpha = 0
+                }) { (finished: Bool) -> Void in
+                    transitionContext.completeTransition(true)
+                    fromViewController.view.removeFromSuperview()
+            }
+        }
+    }
+    
+    
 }
