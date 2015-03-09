@@ -20,6 +20,7 @@
 		D71C12741AAC39660081E23C /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C12731AAC39660081E23C /* AccountViewController.swift */; };
 		D71C12761AAC39E40081E23C /* TrendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C12751AAC39E40081E23C /* TrendViewController.swift */; };
 		D71C12781AAD30D00081E23C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C12771AAD30D00081E23C /* LoginViewController.swift */; };
+		D71C127C1AAD637C0081E23C /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C127B1AAD637C0081E23C /* Common.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		D71C12731AAC39660081E23C /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		D71C12751AAC39E40081E23C /* TrendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendViewController.swift; sourceTree = "<group>"; };
 		D71C12771AAD30D00081E23C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D71C127B1AAD637C0081E23C /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 		D71C12481AAC33960081E23C /* Wk5_Assignment_Tumblr */ = {
 			isa = PBXGroup;
 			children = (
+				D71C127B1AAD637C0081E23C /* Common.swift */,
 				D71C124B1AAC33960081E23C /* AppDelegate.swift */,
 				D71C124D1AAC33960081E23C /* ViewController.swift */,
 				D71C124F1AAC33960081E23C /* Main.storyboard */,
@@ -241,6 +244,7 @@
 				D71C126C1AAC36920081E23C /* TabBarViewController.swift in Sources */,
 				D71C12721AAC390E0081E23C /* ComposeViewController.swift in Sources */,
 				D71C124C1AAC33960081E23C /* AppDelegate.swift in Sources */,
+				D71C127C1AAD637C0081E23C /* Common.swift in Sources */,
 				D71C126E1AAC372F0081E23C /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

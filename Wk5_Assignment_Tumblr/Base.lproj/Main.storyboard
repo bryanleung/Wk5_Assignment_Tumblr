@@ -214,11 +214,16 @@
                                     </imageView>
                                 </subviews>
                             </scrollView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading-1" id="k9H-di-Zs5">
+                                <rect key="frame" x="129" y="275" width="61" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.20392156859999999" green="0.27450980390000002" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="9xL-Xa-E88"/>
                     <connections>
+                        <outlet property="loadingImage" destination="k9H-di-Zs5" id="FlH-jE-bQl"/>
                         <outlet property="scrollView" destination="kG3-hd-8jH" id="9zl-6Q-dip"/>
                     </connections>
                 </viewController>
@@ -374,6 +379,7 @@
         <image name="home_selected_icon" width="35" height="35"/>
         <image name="home_spinner" width="146" height="146"/>
         <image name="link_icon" width="75" height="95"/>
+        <image name="loading-1" width="61" height="19"/>
         <image name="login_form" width="300" height="132"/>
         <image name="nevermind" width="320" height="53"/>
         <image name="photo_icon" width="75" height="95"/>
