@@ -41,7 +41,7 @@ class TabBarViewController: UIViewController, UIViewControllerTransitioningDeleg
         
         
         currentViewController = viewControllersArray[selectedIndex]
-        //didPressHome(self)
+        tabBarDidPress(buttons[selectedIndex])
         
     }
 
@@ -61,16 +61,6 @@ class TabBarViewController: UIViewController, UIViewControllerTransitioningDeleg
     }
     */
 
-    
-    @IBAction func didPressTrend(sender: AnyObject) {
-        removeChildView(currentViewController)
-        addChildViewController(trendViewController)
-        var trendView = trendViewController.view
-        trendView.frame = contentView.frame
-        contentView.addSubview(trendViewController.view)
-        trendViewController.didMoveToParentViewController(self)
-        currentViewController = trendViewController
-    }
     
     @IBAction func tabBarDidPress(sender: AnyObject) {
         // selectedIndex is the current button thats selected
@@ -124,22 +114,67 @@ class TabBarViewController: UIViewController, UIViewControllerTransitioningDeleg
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        println("animating transition")
+        //println("animating transition")
         var containerView = transitionContext.containerView()
         var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
         
+
+        
+        
         if (isPresenting) {
             containerView.addSubview(toViewController.view)
             toViewController.view.alpha = 0
+            
+            var destinationVC = toViewController as ComposeViewController
+            var chatIcon = destinationVC.chat
+            var quoteIcon = destinationVC.quote
+            var photoIcon = destinationVC.photo
+            var videoIcon = destinationVC.video
+            var textIcon = destinationVC.text
+            var linkIcon = destinationVC.link
+            
+            textIcon.center.y = 800
+            chatIcon.center.y = 700
+            videoIcon.center.y = 600
+            photoIcon.center.y = 500
+            quoteIcon.center.y = 400
+            linkIcon.center.y = 300
+            
             UIView.animateWithDuration(duration, animations: { () -> Void in
                 toViewController.view.alpha = 1
+                chatIcon.center.y = destinationVC.originChatCenter.y
+                quoteIcon.center.y = destinationVC.originQuoteCenter.y
+                photoIcon.center.y = destinationVC.originPhotoCenter.y
+                videoIcon.center.y = destinationVC.originVideoCenter.y
+                textIcon.center.y = destinationVC.origintextCenter.y
+                linkIcon.center.y = destinationVC.originLinkCenter.y
                 }) { (finished: Bool) -> Void in
                     transitionContext.completeTransition(true)
             }
-        } else {
+        }
+        
+        else {
+            
+            var destinationVC = fromViewController as ComposeViewController
+            var chatIcon = destinationVC.chat
+            var quoteIcon = destinationVC.quote
+            var photoIcon = destinationVC.photo
+            var videoIcon = destinationVC.video
+            var textIcon = destinationVC.text
+            var linkIcon = destinationVC.link
+            
+            
             UIView.animateWithDuration(duration, animations: { () -> Void in
                 fromViewController.view.alpha = 0
+                linkIcon.center.y = destinationVC.originLinkCenter.y - 800
+                quoteIcon.center.y = destinationVC.originQuoteCenter.y - 700
+                photoIcon.center.y = destinationVC.originPhotoCenter.y - 600
+                videoIcon.center.y = destinationVC.originVideoCenter.y - 500
+                chatIcon.center.y = destinationVC.originChatCenter.y - 400
+                textIcon.center.y = destinationVC.origintextCenter.y - 300
+                
+                
                 }) { (finished: Bool) -> Void in
                     transitionContext.completeTransition(true)
                     fromViewController.view.removeFromSuperview()

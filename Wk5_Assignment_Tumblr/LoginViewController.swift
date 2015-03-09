@@ -1,5 +1,5 @@
 //
-//  TrendViewController.swift
+//  LoginViewController.swift
 //  Wk5_Assignment_Tumblr
 //
 //  Created by Bryan Leung on 3/8/15.
@@ -8,25 +8,31 @@
 
 import UIKit
 
-class TrendViewController: UIViewController {
+class LoginViewController: UIViewController
+    {
+    @IBOutlet weak var emailField: UITextField!
 
-    @IBOutlet weak var scrollView: UIScrollView!
-    
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        scrollView.contentSize = CGSize(width: 320, height: 568)
 
-        // Do any additional setup after loading the view.
+        emailField.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
+
+    }
+    
+    @IBAction func didPressCancel(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+        emailField.resignFirstResponder()
     }
 
-    
 
+
+
+    
+    
 }

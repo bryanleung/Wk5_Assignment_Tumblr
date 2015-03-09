@@ -10,8 +10,12 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        scrollView.contentSize = CGSize(width: 320, height: 1217)
+        scrollView.contentInset.bottom = 44
 
         // Do any additional setup after loading the view.
     }
